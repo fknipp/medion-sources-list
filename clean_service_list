@@ -4,78 +4,86 @@ IFS=''
 tr '\0' ' ' |
 while read line; do
 
-    if [[ $line =~ ORF ]]; then
+    name="${line:43:8}${line:115:17}"
+
+    if [[ $name =~ ^ORF ]]; then
         echo "$line"
-    elif [[ $line =~ LCKD ]] ; then
+    elif [[ $name =~ ^ATV ]] ; then
+        echo "$line"
+    elif [[ $name =~ ^PULS\  ]] ; then
+        echo "$line"
+    elif [[ $name =~ ^ServusTV\  ]] ; then
+        echo "$line"
+    elif [[ ${line:111:4} = "LCKD" ]] ; then
         continue
-    elif [[ $line =~ "alt_" ]] ; then
+    elif [[ $name =~ "alt_" ]] ; then
         continue
-    elif [[ $line =~ "Sky " ]] ; then
+    elif [[ $name =~ "Sky " ]] ; then
         continue
-    elif [[ $line =~ "SES " ]] ; then
+    elif [[ $name =~ "SES " ]] ; then
         continue
-    elif [[ $line =~ "F3 " ]] ; then
+    elif [[ $name =~ "F3 " ]] ; then
         continue
-    elif [[ $line =~ "Test" ]] ; then
+    elif [[ $name =~ "Test" ]] ; then
         continue
-    elif [[ $line =~ "TEST" ]] ; then
+    elif [[ $name =~ "TEST" ]] ; then
         continue
-    elif [[ $line =~ "France" ]] ; then
+    elif [[ $name =~ "France" ]] ; then
         continue
-    elif [[ $line =~ "QVC" ]] ; then
+    elif [[ $name =~ "QVC" ]] ; then
         continue
-    elif [[ $line =~ "RT " ]] ; then
+    elif [[ $name =~ "RT " ]] ; then
         continue
-    elif [[ $line =~ "Canal " ]] ; then
+    elif [[ $name =~ "Canal " ]] ; then
         continue
-    elif [[ $line =~ "CANAL " ]] ; then
+    elif [[ $name =~ "CANAL " ]] ; then
         continue
-    elif [[ $line =~ "CGTN" ]] ; then
+    elif [[ $name =~ "CGTN" ]] ; then
         continue
-    elif [[ $line =~ "Service" ]] ; then
+    elif [[ $name =~ "Service" ]] ; then
         continue
-    elif [[ $line =~ "14.12.2021" ]] ; then
+    elif [[ $name =~ "14.12.2021" ]] ; then
         continue
-    elif [[ ${line:43:1} = " " ]] ; then
+    elif [[ ${name:0:1} = " " ]] ; then
         continue
-    elif [[ ${line:43:1} = "." ]] ; then
+    elif [[ $name =~ ^\. ]] ; then
         continue
-    elif [[ $line =~ "BR " ]] ; then
+    elif [[ $name =~ "BR " ]] ; then
         if (( !BR )); then
             echo "$line"
             BR=1
         else
             continue
         fi
-    elif [[ $line =~ "WDR " ]] ; then
+    elif [[ $name =~ "WDR " ]] ; then
         if (( !WDR )); then
             echo "$line"
             WDR=1
         else
             continue
         fi
-    elif [[ $line =~ "MDR " ]] ; then
+    elif [[ $name =~ "MDR " ]] ; then
         if (( !MDR )); then
             echo "$line"
             MDR=1
         else
             continue
         fi
-    elif [[ $line =~ "NDR " ]] ; then
+    elif [[ $name =~ "NDR " ]] ; then
         if (( !NDR )); then
             echo "$line"
             NDR=1
         else
             continue
         fi
-    elif [[ $line =~ "SWR " ]] ; then
+    elif [[ $name =~ "SWR " ]] ; then
         if (( !SWR )); then
             echo "$line"
             SWR=1
         else
             continue
         fi
-    elif [[ $line =~ "rbb " ]] ; then
+    elif [[ $name =~ "rbb " ]] ; then
         if (( !rbb )); then
             echo "$line"
             rbb=1

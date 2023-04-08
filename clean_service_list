@@ -34,6 +34,8 @@ while read line; do
         continue
     elif [[ $line =~ "Service" ]] ; then
         continue
+    elif [[ $line =~ "14.12.2021" ]] ; then
+        continue
     elif [[ ${line:43:1} = " " ]] ; then
         continue
     elif [[ ${line:43:1} = "." ]] ; then

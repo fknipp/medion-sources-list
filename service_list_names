@@ -1,0 +1,11 @@
+#!/bin/bash
+
+IFS=''
+tr '\0' ' ' |
+while read line; do
+
+    name="${line:43:8}${line:115:17}"
+
+    echo "$name"
+
+done

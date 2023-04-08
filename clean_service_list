@@ -1,9 +1,10 @@
 #!/bin/bash
 
+IFS=''
 while read line; do
 
     if [[ $line =~ ORF ]]; then
-        echo $line
+        echo "$line"
     elif [[ $line =~ LCKD ]] ; then
         continue
     elif [[ $line =~ "alt_" ]] ; then
@@ -38,48 +39,48 @@ while read line; do
         continue
     elif [[ $line =~ "BR " ]] ; then
         if (( !BR )); then
-            echo $line
+            echo "$line"
             BR=1
         else
             continue
         fi
     elif [[ $line =~ "WDR " ]] ; then
         if (( !WDR )); then
-            echo $line
+            echo "$line"
             WDR=1
         else
             continue
         fi
     elif [[ $line =~ "MDR " ]] ; then
         if (( !MDR )); then
-            echo $line
+            echo "$line"
             MDR=1
         else
             continue
         fi
     elif [[ $line =~ "NDR " ]] ; then
         if (( !NDR )); then
-            echo $line
+            echo "$line"
             NDR=1
         else
             continue
         fi
     elif [[ $line =~ "SWR " ]] ; then
         if (( !SWR )); then
-            echo $line
+            echo "$line"
             SWR=1
         else
             continue
         fi
     elif [[ $line =~ "rbb " ]] ; then
         if (( !rbb )); then
-            echo $line
+            echo "$line"
             rbb=1
         else
             continue
         fi
     else
-        echo $line
+        echo "$line"
     fi
 
 done
